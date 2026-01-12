@@ -1,6 +1,6 @@
 import ServicesHeader from "./ServicesHeader";
 import ServiceCard from "./ServiceCard";
-import { servicesData } from "./ServicesData";
+import { servicesData } from "./servicesData";
 
 const Services = () => {
   return (

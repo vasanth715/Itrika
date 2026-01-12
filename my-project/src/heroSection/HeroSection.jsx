@@ -174,9 +174,8 @@
 //   );
 // }
 
-
-import React, { useState, useEffect } from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function PremiumHero() {
   const [isVisible, setIsVisible] = useState(false);
@@ -186,60 +185,91 @@ export default function PremiumHero() {
   }, []);
 
   return (
-   <div className="relative min-h-screen flex items-center overflow-hidden font-sans">
+    <div className="relative min-h-screen flex items-center overflow-hidden font-sans">
       
-      {/* --- BACKGROUND IMAGE (Z-0) --- */}
+      {/* --- BACKGROUND IMAGE --- */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="hero4.png" 
-          alt="IT Consulting Background" 
+        <img
+          src="hero4.png"
+          alt="IT Consulting Background"
           className="w-full h-full object-cover object-right lg:object-center"
         />
-        {/* Left Aligned Gradient Overlay - Text highlight avvadaniki left side dark ga untundi */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a] via-[#0f172a]/80 to-transparent lg:from-[#0f172a]/90 lg:via-[#0f172a]/60 lg:to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a] via-[#0f172a]/80 to-transparent lg:from-[#0f172a]/90 lg:via-[#0f172a]/60 lg:to-transparent" />
       </div>
 
-      {/* --- CONTENT AREA (Z-10) --- */}
+      {/* --- CONTENT AREA --- */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full">
-        {/* Grid layout to push content to left */}
         <div className="grid lg:grid-cols-2 items-center">
           
-          <div className={`space-y-8 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'} text-left`}>
-            
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/10 border border-orange-500/30 rounded-full text-orange-400 text-sm font-bold tracking-widest uppercase mb-4 shadow-sm backdrop-blur-md">
+          {/* ✅ xl and above → move content 20px left ONLY */}
+          <div
+            className={`space-y-8 transition-all duration-1000 transform text-left
+              ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}
+              xl:-ml-[20px]
+            `}
+          >
+            {/* Badge – stable for md & lg */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/10 border border-orange-500/30 rounded-full text-orange-400
+              text-sm md:text-xs lg:text-xs
+              font-bold md:font-semibold lg:font-semibold
+              tracking-widest uppercase mb-4 shadow-sm backdrop-blur-md
+            ">
               <Sparkles className="w-4 h-4" />
               Empowering Innovation
             </div>
 
-            {/* Main Heading */}
-            <h1 className="text-5xl md:text-7xl font-[700] text-white leading-tight tracking-tight">
+            {/* Heading – reduced on md & lg ONLY */}
+            <h1
+              className="
+                text-5xl
+                md:text-[42px]
+                lg:text-[48px]
+                xl:text-7xl
+                font-[700]
+                md:font-[600]
+                lg:font-[600]
+                text-white leading-tight tracking-tight
+              "
+            >
               Future-Ready <br />
               <span className="text-orange-500 drop-shadow-sm">
                 IT Consulting
               </span>
             </h1>
 
-            {/* Subtext - Max width adjusted for left alignment */}
-            <p className="text-lg md:text-xl text-slate-200 max-w-xl leading-relaxed font-[500] drop-shadow-md">
-              ITrika Inc. helps organizations navigate the digital landscape with 
-              <span className="text-blue-400 font-bold"> bespoke tech solutions </span> 
+            {/* Paragraph – reduced on md & lg */}
+            <p
+              className="
+                text-lg
+                md:text-[16px]
+                lg:text-[17px]
+                xl:text-xl
+                text-slate-200 max-w-xl leading-relaxed
+                font-[500] md:font-[400]
+                drop-shadow-md
+              "
+            >
+              ITrika Inc. helps organizations navigate the digital landscape with
+              <span className="text-blue-400 font-bold">
+                {" "}
+                bespoke tech solutions{" "}
+              </span>
               and cutting-edge industry expertise.
             </p>
 
-            {/* CTA Buttons - Left Aligned */}
-            <div className="flex flex-col sm:flex-row items-start justify-start gap-6 pt-6">
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-start gap-6 pt-6">
               <button className="px-10 py-4 bg-orange-500 hover:bg-orange-600 text-white font-[700] rounded-full shadow-lg shadow-orange-500/30 transition-all duration-400 flex items-center gap-3 group">
                 Work With Us
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
-              
+
               <button className="px-10 py-4 bg-white/5 border-2 border-white/20 hover:border-blue-500 text-white font-[700] rounded-full hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
                 Our Services
               </button>
             </div>
 
-            {/* Trust Indicators */}
+            {/* Trust Indicator */}
             <div className="pt-12 border-t border-white/10 inline-block">
               <p className="text-xs font-[700] text-slate-400 uppercase tracking-[0.3em]">
                 Trusted by industry leaders worldwide
@@ -247,14 +277,13 @@ export default function PremiumHero() {
             </div>
           </div>
 
-          {/* Empty column to keep the right side clear for your image */}
-          <div className="hidden lg:block lg:col-span-1"></div>
-
+          {/* Right spacer */}
+          <div className="hidden lg:block" />
         </div>
       </div>
 
-      {/* Subtle Bottom/Left Corner Glow */}
-      <div className="absolute bottom-0 left-0 w-full lg:w-1/2 h-64 bg-gradient-to-tr from-blue-600/10 to-transparent z-0 pointer-events-none"></div>
+      {/* Glow */}
+      <div className="absolute bottom-0 left-0 w-full lg:w-1/2 h-64 bg-gradient-to-tr from-blue-600/10 to-transparent z-0 pointer-events-none" />
     </div>
   );
 }

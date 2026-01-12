@@ -1,46 +1,97 @@
 import { FaArrowRight } from "react-icons/fa";
 
-const ServiceCard = ({ title, description, icon: Icon, link }) => {
+const ServiceCard = ({ title, description, icon: Icon, link, image }) => {
   return (
     <div
       className="
-        bg-white 
-        rounded-2xl 
-        p-8 
-        shadow-xl 
-        border 
+        group
+        relative
+        rounded-2xl
+        shadow-xl
+        border
         border-gray-200
-        flex 
-        flex-col 
-        justify-between
         min-h-[320px]
+        overflow-hidden
       "
     >
-      {/* ICON */}
-      <div className="mb-6">
-        <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-blue-100 text-blue-600">
+      {/* ================= BACKGROUND IMAGE ================= */}
+      <div className="absolute inset-0">
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+
+      {/* ================= BASE CONTENT ================= */}
+      <div className="relative z-10 p-8 flex items-center gap-4 text-white">
+        <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-white/20 backdrop-blur-sm">
           <Icon size={28} />
         </div>
+
+        <h3 className="text-xl font-semibold">{title}</h3>
       </div>
 
-      {/* TEXT CONTENT */}
-      <div className="flex-1">
-        <h3 className="text-xl font-semibold text-gray-900 mb-4">
-          {title}
-        </h3>
+      {/* ================= GLASS HOVER OVERLAY ================= */}
+      <div
+        className="
+          absolute
+          inset-0
+          z-20
+          px-8
+          py-8
+          transform
+          translate-y-full
+          group-hover:translate-y-0
+          transition-transform
+          duration-500
+          ease-out
+          flex
+          flex-col
+          bg-white/30
+          backdrop-blur-lg
+          border-t
+          border-white/30
+        "
+      >
+        {/* Icon + Heading */}
+        <div className="flex items-center gap-4 mb-6 text-white">
+          <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-white/30 backdrop-blur-md">
+            <Icon size={28} />
+          </div>
+          <h3 className="text-xl font-semibold">{title}</h3>
+        </div>
 
-        <p className="text-gray-600 text-sm leading-relaxed">
+        {/* Description */}
+        <p className="text-white/90 text-sm leading-relaxed mb-8">
           {description}
         </p>
-      </div>
 
-      {/* CTA */}
-      <div className="mt-6">
+        {/* CTA – BOTTOM LINE ONLY */}
         <a
           href={link}
-          className="inline-flex items-center gap-2 text-sm font-medium text-blue-600"
+          className="
+            mt-auto
+            inline-flex
+            items-center
+            gap-2
+            text-sm
+            font-semibold
+            text-orange-400
+            border-b
+            border-sky-400
+            pb-1
+            w-fit
+            hover:text-orange-500
+            hover:border-sky-300
+            transition-colors
+          "
         >
-          Learn More <FaArrowRight size={14} />
+          Learn More
+          <span className="transition-transform duration-300 group-hover:translate-x-1">
+            <FaArrowRight size={14} />
+          </span>
         </a>
       </div>
     </div>
