@@ -6,7 +6,8 @@ import HeroSection from "../src/heroSection/HeroSection"
 import  './index.css'
 import JobApplicationForm from './JobApplication/jobapplication';
 import ContactUs from './contactus/contactUs';
-import Footer from './footer/footer'
+import Footer from './footer/footer';
+import About from './About/about'
 function App() {
   
 
@@ -14,6 +15,7 @@ function App() {
     <>
     <Header/>
     <HeroSection/>
+    <About/>
      <Services />
      <JobApplicationForm/>
     <ContactUs/>
