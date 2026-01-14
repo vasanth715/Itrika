@@ -67,7 +67,7 @@ const handleNavClick = (item) => {
             onClick={() => navigate("/")}
           >
             <img
-              src="/teledhu.png"
+              src="/logofinal.png"
               alt="Logo"
               className={`w-52 transition-transform duration-300 group-hover:scale-110
       ${isScrolled
