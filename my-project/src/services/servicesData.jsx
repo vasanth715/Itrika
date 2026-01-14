@@ -93,6 +93,7 @@ import softwareImg from "../assets/services/softwareeng.png";
 import networkImg from "../assets/services/networksol.png";
 import supportImg from "../assets/services/supportcon.png";
 import defaultImg from "../assets/services/image.png";
+import desktopImg from "../assets/services/desktop.png";
 
 export const servicesData = [
   {
@@ -128,8 +129,8 @@ export const servicesData = [
     description:
       "Seamless cloud desktop services enabling efficient remote work.",
     icon: FaDesktop,
-    link: "/services/cloud-desktop",
-    image: cloudDesktopImg,
+    link: "/services/desktop",
+    image: desktopImg,
   },
   {
     id: 5,

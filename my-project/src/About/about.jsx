@@ -12,7 +12,7 @@ export default function AboutUs() {
   ];
 
   return (
-    <section id="about" className="py-12 md:py-20 lg:py-28 bg-white font-sans overflow-hidden">
+    <section id="about" className="py-12 md:py-20 lg:py-28 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Grid: Mobile lo single column, LG screens nundi two columns */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">

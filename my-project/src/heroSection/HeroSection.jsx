@@ -185,7 +185,7 @@ export default function PremiumHero() {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex items-center overflow-hidden font-sans">
+    <div className="relative min-h-screen flex items-center overflow-hidden">
       
       {/* --- BACKGROUND IMAGE --- */}
       <div className="absolute inset-0 z-0">

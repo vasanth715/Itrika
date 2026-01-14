@@ -31,7 +31,7 @@ export default function PremiumFooter() {
   ];
 
   return (
-    <footer className="bg-[#0f172a] text-white font-sans relative overflow-hidden">
+    <footer className="bg-[#0f172a] text-white relative overflow-hidden">
       {/* Top Accent Line */}
       <div className="h-1 bg-gradient-to-r from-orange-500 via-blue-600 to-orange-400" />
 

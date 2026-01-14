@@ -1,20 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {
-  X,
-  Mail,
-  User,
-  MessageSquare,
-  Send,
-  CheckCircle,
-  MapPin,
-  Phone,
-} from "lucide-react";
+import { X, Mail, Send, CheckCircle, Phone } from "lucide-react";
 
 export default function ContactUs() {
   const [showPopup, setShowPopup] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
     phone: "",
     company: "",
@@ -31,17 +21,10 @@ export default function ContactUs() {
   }, []);
 
   const validateField = (name, value) => {
-    if (!value.trim() && name !== "company")
-      return `${name} is required`;
-    if (
-      name === "email" &&
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-    )
+    if (!value.trim() && name !== "company") return `${name} is required`;
+    if (name === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
       return "Invalid email address";
-    if (
-      name === "phone" &&
-      !/^[0-9]{10}$/.test(value.replace(/\s/g, ""))
-    )
+    if (name === "phone" && !/^[0-9]{10}$/.test(value.replace(/\s/g, "")))
       return "10 digits required";
     return "";
   };
@@ -83,10 +66,10 @@ export default function ContactUs() {
   const labelStyle =
     "block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1";
   const inputStyle =
-    "w-full px-3 sm:px-4 py-3 bg-slate-50 border-b-2 border-slate-200 focus:border-indigo-600 outline-none text-sm";
+    "w-full px-3 sm:px-4 py-2 sm:py-3 bg-slate-50 border-b-2 border-slate-200 focus:border-indigo-600 outline-none text-sm";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center px-3 sm:px-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/70 backdrop-blur-sm"
@@ -101,175 +84,157 @@ export default function ContactUs() {
         <X className="w-5 h-5 text-slate-700" />
       </button>
 
-      {/* Popup */}
-      <div
-        className="
-          relative
-          w-full
-          max-w-5xl
-          max-h-[90vh]
-          overflow-y-auto
-          bg-white
-          rounded-lg
-          shadow-2xl
-          flex
-          flex-col
-          md:flex-row
-        "
-      >
-        {/* LEFT INFO PANEL */}
-        <div className="w-full md:w-[35%] bg-indigo-700 p-6 sm:p-8 text-white">
-          <h2 className="text-2xl font-light mb-6">
-            Connect <span className="font-bold">With Us</span>
-          </h2>
-
-          <div className="space-y-6">
-            <div className="flex items-center gap-3">
-              <Mail className="w-5 h-5 text-indigo-200" />
-              <div>
-                <p className="text-[10px] uppercase text-indigo-300 font-bold">
-                  Email
-                </p>
-                <p className="text-sm">support@itrikainc.com</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <Phone className="w-5 h-5 text-indigo-200" />
-              <div>
-                <p className="text-[10px] uppercase text-indigo-300 font-bold">
-                  Call
-                </p>
-                <p className="text-sm">+1 (555) 012 3456</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <MapPin className="w-5 h-5 text-indigo-200" />
-              <div>
-                <p className="text-[10px] uppercase text-indigo-300 font-bold">
-                  Location
-                </p>
-                <p className="text-sm">San Francisco, CA</p>
-              </div>
-            </div>
+      {/* ================= POPUP ================= */}
+      <div className="relative w-full max-w-4xl max-h-[85vh] bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col">
+        {/* ================= BANNER ================= */}
+        <div className="w-full h-[150px] sm:h-[180px] relative">
+          <img
+            src="/contact-banner.jpg"
+            alt="Contact Banner"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+            <h2 className="text-white text-2xl sm:text-3xl font-bold">
+              Contact Us
+            </h2>
           </div>
-
-          <p className="mt-8 text-[11px] text-indigo-200 italic">
-            "Turning complex ideas into simple digital solutions."
-          </p>
         </div>
 
-        {/* RIGHT FORM PANEL */}
-        <div className="w-full md:w-[65%] p-6 sm:p-10">
-          {isSuccess ? (
-            <div className="h-full flex flex-col items-center justify-center py-20 text-center">
-              <CheckCircle className="w-14 h-14 text-green-500 mb-4" />
-              <h3 className="text-xl font-bold">Message Sent</h3>
-              <p className="text-slate-500 mt-2">
-                We will contact you shortly.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        {/* ================= CONTENT ================= */}
+        <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
+          {/* LEFT INFO */}
+          <div className="w-full md:w-[35%] bg-indigo-700 p-6 text-white">
+            <h3 className="text-xl font-light mb-6">
+              Connect <span className="font-bold">With Us</span>
+            </h3>
+
+            <div className="space-y-5">
+              <div className="flex items-center gap-3">
+                <Mail className="w-4 h-4 text-indigo-200" />
                 <div>
-                  <label className={labelStyle}>First Name</label>
+                  <p className="text-[9px] uppercase text-indigo-300 font-bold">
+                    Email
+                  </p>
+                  <p className="text-sm">support@itrikainc.com</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Phone className="w-4 h-4 text-indigo-200" />
+                <div>
+                  <p className="text-[9px] uppercase text-indigo-300 font-bold">
+                    Call
+                  </p>
+                  <p className="text-sm">+1 (555) 012 3456</p>
+                </div>
+              </div>
+            </div>
+
+            <p className="hidden md:block mt-8 text-[11px] text-indigo-200 italic">
+              "Turning complex ideas into simple digital solutions."
+            </p>
+          </div>
+
+          {/* RIGHT FORM */}
+          <div className="w-full md:w-[65%] p-6 sm:p-10 overflow-y-auto">
+            {isSuccess ? (
+              <div className="h-full flex flex-col items-center justify-center text-center">
+                <CheckCircle className="w-12 h-12 text-green-500 mb-4" />
+                <h3 className="text-lg font-bold">Message Sent</h3>
+                <p className="text-slate-500 text-sm mt-2">
+                  We will contact you shortly.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className={labelStyle}>Full Name</label>
                   <input
-                    name="firstName"
-                    value={formData.firstName}
+                    name="name"
+                    value={formData.name}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className={inputStyle}
                   />
-                  {errors.firstName && touched.firstName && (
+                  {errors.name && touched.name && (
                     <p className="text-[10px] text-red-500 mt-1">
-                      {errors.firstName}
+                      {errors.name}
                     </p>
                   )}
                 </div>
 
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className={labelStyle}>Email</label>
+                    <input
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={inputStyle}
+                    />
+                    {errors.email && touched.email && (
+                      <p className="text-[10px] text-red-500 mt-1">
+                        {errors.email}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className={labelStyle}>Phone</label>
+                    <input
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={inputStyle}
+                    />
+                    {errors.phone && touched.phone && (
+                      <p className="text-[10px] text-red-500 mt-1">
+                        {errors.phone}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
                 <div>
-                  <label className={labelStyle}>Last Name</label>
+                  <label className={labelStyle}>Company (Optional)</label>
                   <input
-                    name="lastName"
-                    value={formData.lastName}
+                    name="company"
+                    value={formData.company}
                     onChange={handleChange}
                     className={inputStyle}
                   />
                 </div>
-              </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className={labelStyle}>Email</label>
-                  <input
-                    name="email"
-                    value={formData.email}
+                  <label className={labelStyle}>Message</label>
+                  <textarea
+                    rows="2"
+                    name="message"
+                    value={formData.message}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={inputStyle}
+                    className={`${inputStyle} resize-none`}
                   />
+                  {errors.message && touched.message && (
+                    <p className="text-[10px] text-red-500 mt-1">
+                      {errors.message}
+                    </p>
+                  )}
                 </div>
 
-                <div>
-                  <label className={labelStyle}>Phone</label>
-                  <input
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className={inputStyle}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className={labelStyle}>Company</label>
-                <input
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className={inputStyle}
-                />
-              </div>
-
-              <div>
-                <label className={labelStyle}>Message</label>
-                <textarea
-                  rows="3"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={`${inputStyle} resize-none`}
-                />
-              </div>
-
-              <div className="sticky bottom-0 bg-white pt-4">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="
-                    w-full
-                    py-4
-                    bg-indigo-600
-                    hover:bg-slate-900
-                    text-white
-                    uppercase
-                    tracking-widest
-                    text-xs
-                    flex
-                    items-center
-                    justify-center
-                    gap-2
-                  "
+                  className="w-full py-3 bg-indigo-600 hover:bg-slate-900 text-white uppercase tracking-widest text-xs font-bold flex items-center justify-center gap-2 rounded-md"
                 >
                   {isSubmitting ? "Processing..." : "Send Inquiry"}
                   <Send className="w-4 h-4" />
                 </button>
-              </div>
-            </form>
-          )}
+              </form>
+            )}
+          </div>
         </div>
       </div>
     </div>
